@@ -6,5 +6,4 @@ const categorySchema = mongoose.Schema({
     attrs: [{ key: { type: String }, value: [{ type: String }] }]
 })
 
-const Category = mongoose.model('Categoty', categorySchema)
-export default Category
+export const Category = mongoose.model('Categoty', categorySchema)
