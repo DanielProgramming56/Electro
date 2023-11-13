@@ -3,7 +3,7 @@ import { recordsPerPage } from "../config/pagination"
 export const getProducts = async (req, res, next) => {
     try {
         let query = {};
-        let queryCondition = false
+        let queryCondition = false;
 
         let priceQueryCondition = {};
         if (req.query.price) {
@@ -15,10 +15,52 @@ export const getProducts = async (req, res, next) => {
             queryCondition = true;
             ratingQueryCondition = { rating: { $in: req.query.rating.split(",") } };
         }
+        let categoryQueryCondition = {};
+        const categoryName = req.params.categoryName || "";
+        if (categoryName) {
+            queryCondition = true;
+            let a = categoryName.replaceAll(",", "/");
+            var regEx = new RegExp("^" + a);
+            categoryQueryCondition = { category: regEx };
+        }
+        if (req.query.category) {
+            queryCondition = true;
+            let a = req.query.category.split(",").map((item) => {
+                if (item) return new RegExp("^" + item);
+            });
+            categoryQueryCondition = {
+                category: { $in: a },
+            };
+        }
+        let attrsQueryCondition = [];
+        if (req.query.attrs) {
+            // attrs=RAM-1TB-2TB-4TB,color-blue-red
+            // [ 'RAM-1TB-4TB', 'color-blue', '' ]
+            attrsQueryCondition = req.query.attrs.split(",").reduce((acc, item) => {
+                if (item) {
+                    let a = item.split("-");
+                    let values = [...a];
+                    values.shift(); // removes first item
+                    let a1 = {
+                        attrs: { $elemMatch: { key: a[0], value: { $in: values } } },
+                    };
+                    acc.push(a1);
+                    // console.dir(acc, { depth: null })
+                    return acc;
+                } else return acc;
+            }, []);
+            //   console.dir(attrsQueryCondition, { depth: null });
+            queryCondition = true;
+        }
 
         if (queryCondition) {
             query = {
-                $and: [priceQueryCondition, ratingQueryCondition],
+                $and: [
+                    priceQueryCondition,
+                    ratingQueryCondition,
+                    categoryQueryCondition,
+                    ...attrsQueryCondition
+                ],
             };
         }
 
@@ -47,4 +89,4 @@ export const getProducts = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-} 
+};

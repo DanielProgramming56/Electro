@@ -1,0 +1,230 @@
+@import "index";
+
+.header-container{
+    background-color: $Dark-color;
+    height: 20vh;
+    color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    position: static;
+    z-index: 100;
+   
+}
+
+.upper-div{
+    background-color: $header-color;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: .8em;
+    gap: 550px;
+    flex-wrap: wrap;
+    padding: 10px;
+    div{
+        display: flex;
+        ul{
+            display: flex;
+            align-items: center;
+            
+            li:first-child{
+                color: $red-color;
+            }
+            li{
+                margin-left: 7px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+        ul{
+            margin-left: 10px;
+        }
+    }
+}
+
+.mid-div{
+    background-color: $Dark-color;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex: 2;
+    gap: 20px;
+
+    .search-div{
+        width: 35em;
+        height: 2.5em;
+        border-radius: 50px;
+        display: flex;
+        
+ 
+        select{
+            flex: 1;
+            padding: 10px;
+            font-size: medium;
+            font-weight: lighter;
+            background-color: $primary-color;
+            border: solid 1px $Grey-color;
+        }
+        input{
+            flex: 2;
+            padding: 10px;
+           border: none;
+
+            &::placeholder{
+                font-size: medium;
+                color: $Grey-color;
+            }
+        }
+        button{
+            flex: 0.7;
+            border: none;
+            background-color: $red-color;
+            color: $primary-color;
+            font-weight: bold;
+            font-size: medium;
+        }
+    }
+    .fav-div{
+        display: flex;
+        align-items: center;
+        margin-right: 80px;
+        width: 15rem;
+        justify-content: space-between;
+        height: 5rem;
+        column-gap: 20px;
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 55px;
+            height: 4em;
+            margin-top: 10px;
+            
+            span{
+                font-size: 12px;
+            }
+            div{
+                position: absolute;
+                background-color: $red-color;
+                width:20px;
+                border-radius: 50%;
+                height: 20px;
+                display: flex;
+                font-size: 12px;
+                align-items: center;
+                justify-content: center;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .menu{
+            display: none;
+        }
+    }
+}
+
+.lower-div{
+    background-color: $red-color;
+    height: 5px;
+    overflow-y: hidden;
+}
+
+@media screen and (max-width: 750px) {
+    .header-container{
+        background-color: $Dark-color;
+        height: 50vh;
+       
+       
+    }
+    .upper-div{
+        flex-direction: column;
+    
+    font-size: .8em;
+    gap: 5px;
+    padding:5px;
+    div{
+        display: flex;
+        flex-wrap: wrap;
+        ul{
+            display: flex;
+            align-items: center;
+            
+            li:first-child{
+                color: $red-color;
+            }
+            li{
+                margin-left: 7px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+        ul{
+            margin-left: 10px;
+        }
+    }
+    }
+    .mid-div{
+        flex-direction: column;
+        align-items: center;
+        flex: 2;
+        gap: 10px;
+        justify-content: center;
+        padding: 0px 25px;
+        img{
+            width: 7em;
+        }
+    
+        .search-div{
+            width: 100%;
+            height: 2.6em;
+            border-radius: 50px;
+            display: flex;
+            select{
+                padding: 5px;
+                font-size: 10px;
+                font-weight: lighter;
+                background-color: $primary-color;
+                border: solid 1px $Grey-color;
+            }
+            input{
+                flex: 2;
+                padding: 5px;
+               border: none;
+    
+                &::placeholder{
+                    font-size: 10px;
+                    color: $Grey-color;
+                }
+            }
+            button{
+                flex: 0.7;
+                border: none;
+                background-color: $red-color;
+                color: $primary-color;
+                font-weight: bold;
+                font-size: 10px;
+            }
+        }
+        .fav-div{
+            column-gap: 5px;
+            width: 70%;
+            margin: 0;
+
+            div{
+                width: 35px;
+                div{
+                    right: 0;
+                    bottom: -50%;
+                }
+            }
+
+            .menu{
+                display: inline-block;
+            }
+        }
+    }
+
+    
+}
