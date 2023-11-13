@@ -10,6 +10,11 @@ html{
     overflow-y: scroll;
 }
 
+img{
+  width: 100%;
+  object-fit: contain;
+}
+
 li{
   margin: 0;
 }
