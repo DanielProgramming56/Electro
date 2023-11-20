@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import { Review } from "./ReviewModel";
-const Schema = new mongoose.Schema()
+import { Review } from "./ReviewModel.js";
+
 const imageSchema = mongoose.Schema({
     path: { type: String, required: true }
 })
-const ProductSchema = Schema({
+const ProductSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,

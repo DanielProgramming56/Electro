@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { User } from "./UserModel.js";
-const Schema = new mongoose.Schema()
 
-const ReviewModel = Schema({
+
+const ReviewModel = mongoose.Schema({
     comment: { type: String, required: true },
     rating: { type: Number, required: true },
     user: {
